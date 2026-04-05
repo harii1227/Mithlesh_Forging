@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Settings, ShieldCheck, Zap, Bolt, Microscope, Cog } from 'lucide-react'
+import { Settings, ShieldCheck, Microscope, Cog } from 'lucide-react'
 
 const Services = () => {
   return (
