@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle } from 'lucide-react'
+import { Phone, MapPin, Send, MessageSquare, CheckCircle } from 'lucide-react'
+import ncrMap from '../assets/delhi-ncr-3d-map-national-600nw-2530527407.webp'
 
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -61,87 +62,87 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Content - Refined 5:7 Split */}
+      {/* Contact Content - High Precision Address Data */}
       <section className="py-24 px-6 md:px-12 bg-primary relative border-b-8 border-primary-container">
         <div className="absolute right-0 top-0 w-1/4 h-full bg-secondary geometric-overlay opacity-5 pointer-events-none" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
-          {/* Details - Compact & Precise */}
+          {/* Details - Strictly matching Business Card */}
           <div className="lg:col-span-5 space-y-16">
             <div className="space-y-12">
-              <span className="text-tertiary font-headline font-black text-[12px] uppercase tracking-[0.8em] block border-l-4 border-secondary pl-6">VANGUARD HUB</span>
+              <span className="text-secondary font-headline font-black text-[14px] uppercase tracking-[1em] block border-l-4 border-tertiary pl-6 underline decoration-4 underline-offset-8">Unit Deployment</span>
               <div className="space-y-12">
                 <ContactInfo
-                  icon={<MapPin size={28} />}
-                  title="Campus"
-                  detail="Plot No. 39/253, Masuri, Parson Jindal Nagar, Ghaziabad, UP"
+                  icon={<MapPin size={32} />}
+                  title="UNIT 1 — MAIN PLANT"
+                  detail="Plot no - 39/253, Masuri, Ghaziabad (UP) — 245101"
                   color="secondary"
                 />
                 <ContactInfo
-                  icon={<Phone size={28} />}
-                  title="Direct Engineering"
-                  detail="+91 98187-76372"
+                  icon={<MapPin size={32} />}
+                  title="UNIT 2 — MANUFACTURING HUB"
+                  detail="Ground Floor Industrial Shed No.1, Dabua Pali Road, Faridabad — 121004 (Haryana)"
                   color="tertiary"
                 />
                 <ContactInfo
-                  icon={<Mail size={28} />}
-                  title="Corporate"
-                  detail="rs22201227@gmail.com"
+                  icon={<Phone size={32} />}
+                  title="DIRECT ENGINEERING"
+                  detail="+91 98187-76372"
                   color="secondary"
                 />
               </div>
             </div>
 
-            <div className="p-10 bg-primary-container border-b-8 border-tertiary shadow-3xl relative group overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Send size={80} /></div>
-              <div className="flex gap-4 items-center mb-6">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
-                <span className="text-[11px] font-black text-white uppercase tracking-[0.4em]">Operations Active</span>
+            <div className="p-12 bg-primary-container border-b-[16px] border-secondary shadow-5xl relative group overflow-hidden">
+              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity"><Send size={100} /></div>
+              <div className="flex gap-6 items-center mb-10">
+                <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-[0_0_15px_#22c55e]" />
+                <span className="text-[14px] font-black text-white uppercase tracking-[0.6em]">System Online</span>
               </div>
-              <p className="text-white text-xl font-black leading-tight uppercase mb-2 tracking-tighter">Response Matrix</p>
-              <p className="text-tertiary text-[12px] font-black uppercase tracking-widest leading-relaxed">Mon-Sat, 9AM — 6PM IST.</p>
+              <p className="text-white text-3xl font-black leading-tight uppercase mb-4 tracking-tighter">Response Priority</p>
+              <p className="text-tertiary text-[14px] font-black uppercase tracking-[1em] leading-relaxed opacity-80">GZ — FD — NCR HUB.</p>
             </div>
           </div>
 
-          {/* Form - Refined Card Approach */}
+          {/* Form - Enhanced High Visibility Labels */}
           <div className="lg:col-span-7">
-            <div className="bg-primary-container p-8 md:p-16 border-t-8 border-secondary shadow-4xl relative overflow-hidden min-h-[650px] flex flex-col justify-center">
+            <div className="bg-primary-container p-12 md:p-20 border-t-[20px] border-secondary shadow-5xl relative overflow-hidden min-h-[700px] flex flex-col justify-center">
               <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
 
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-                    <h2 className="text-4xl font-black text-white mb-16 uppercase tracking-tighter flex items-center gap-6 leading-none">
-                      <MessageSquare size={32} className="text-secondary shadow-2xl" /> FILL CONTACT FORM IF YOU ARE INTERESTED
+                    <h2 className="text-4xl md:text-5xl font-black text-white mb-20 uppercase tracking-tighter flex items-center gap-8 leading-none underline decoration-8 decoration-secondary/30 underline-offset-[20px]">
+                      <MessageSquare size={48} className="text-secondary shadow-2xl" /> Request Information.
                     </h2>
 
-                    <form onSubmit={handleSubmit} className="space-y-10">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <InputField label="Full Name" name="name" placeholder="John Doe" />
-                        <InputField label="Company" name="company" placeholder="Organization" />
+                    <form onSubmit={handleSubmit} className="space-y-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <InputField label="Full Integrity Name" name="name" placeholder="Mithlesh Kuumar" />
+                        <InputField label="Corporate Entity" name="company" placeholder="Unit/Organization" />
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <InputField label="Email Address" name="email" type="email" placeholder="john@company.com" />
-                        <InputField label="Phone Number" name="phone" placeholder="+91 XXXX" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <InputField label="Engineering Email" name="email" type="email" placeholder="direct@unit.com" />
+                        <InputField label="Contact Terminal" name="phone" placeholder="+91 XXXX" />
                       </div>
-                      <div className="space-y-4">
-                        <label className="text-[11px] font-black uppercase tracking-[0.4em] text-tertiary">Specifications</label>
-                        <textarea name="message" rows={4} required className="w-full bg-primary border-b-4 border-secondary/20 focus:border-tertiary transition-all duration-500 py-4 px-6 text-white placeholder-white/10 outline-none text-md font-black uppercase tracking-tight shadow-inner" placeholder="Detailed machinery specs..."></textarea>
+                      <div className="space-y-6">
+                        <label className="text-[14px] font-black uppercase tracking-[1em] text-tertiary block mb-4 border-l-4 border-tertiary pl-6">Technical Scope</label>
+                        <textarea name="message" rows={5} required className="w-full bg-primary border-4 border-secondary/10 focus:border-tertiary border-r-[12px] transition-all duration-500 py-6 px-8 text-white placeholder-white/20 outline-none text-lg font-black uppercase tracking-tight shadow-2xl hover:bg-white/5" placeholder="SPECIFY TONNAGE, QUANTITY OR REPAIR DETAILS..."></textarea>
                       </div>
-                      <motion.button whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(220,38,38,0.4)" }} whileTap={{ scale: 0.98 }} disabled={isLoading} className="w-full py-6 bg-secondary text-white font-headline font-black uppercase tracking-[0.5em] text-[12px] shadow-3xl hover:bg-tertiary transition-all duration-500">
-                        {isLoading ? "SENDING..." : "SEND REQUEST"}
+                      <motion.button whileHover={{ scale: 1.02, boxShadow: "0 40px 80px rgba(220,38,38,0.5)" }} whileTap={{ scale: 0.98 }} disabled={isLoading} className="w-full py-8 bg-secondary text-white font-headline font-black uppercase tracking-[1em] text-[14px] shadow-5xl hover:bg-tertiary transition-all duration-700">
+                        {isLoading ? "TRANSMITTING..." : "SEND REQUEST"}
                       </motion.button>
                     </form>
                   </motion.div>
                 ) : (
-                  <motion.div key="success" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center space-y-12 relative z-10">
-                    <div className="w-24 h-24 bg-secondary text-white rounded-none flex items-center justify-center mx-auto mb-10 shadow-[0_0_40px_rgba(220,38,38,0.6)] border-b-4 border-tertiary">
-                      <CheckCircle size={48} />
+                  <motion.div key="success" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center space-y-16 relative z-10">
+                    <div className="w-32 h-32 bg-secondary text-white rounded-none flex items-center justify-center mx-auto mb-12 shadow-[0_0_80px_rgba(220,38,38,0.6)] border-b-[20px] border-tertiary">
+                      <CheckCircle size={64} />
                     </div>
-                    <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">TRANSMISSION SUCCESS</h2>
-                    <p className="text-white/40 text-lg font-black uppercase tracking-[0.3em] opacity-80 max-w-sm mx-auto">
-                      Engineering response imminent.
+                    <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">TRANSMISSION SUCCESSFUL</h2>
+                    <p className="text-white/40 text-2xl font-black uppercase tracking-[0.5em] opacity-80 max-w-lg mx-auto leading-relaxed">
+                      Engineering response unit dispatched.
                     </p>
-                    <button onClick={() => setIsSubmitted(false)} className="text-[12px] font-black uppercase tracking-[0.6em] text-secondary hover:text-tertiary underline decoration-primary-container decoration-4 transition-all">
+                    <button onClick={() => setIsSubmitted(false)} className="text-[14px] font-black uppercase tracking-[1em] text-secondary hover:text-tertiary underline decoration-primary-container decoration-8 transition-all">
                       NEW INTAKE
                     </button>
                   </motion.div>
@@ -152,21 +153,98 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section - Refined Proportions */}
-      <section className="px-6 md:px-12 py-24 bg-primary relative">
-        <div className="absolute inset-x-0 top-0 h-2 bg-secondary/20" />
-        <div className="max-w-7xl mx-auto h-[500px] bg-primary relative overflow-hidden shadow-4xl group border-l-8 border-secondary">
-          <img
-            src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-            className="w-full h-full object-cover grayscale brightness-[0.2] contrast-200 group-hover:brightness-[0.4] transition-all duration-[5s]"
-            alt="Location"
-          />
-          <div className="absolute inset-0 flex items-center justify-center z-10 p-6">
-            <div className="bg-primary/95 text-white p-12 md:p-16 shadow-4xl flex flex-col items-center border-t-8 border-secondary max-w-sm w-full">
-              <MapPin size={60} className="text-tertiary mb-6 animate-bounce" />
-              <h3 className="text-4xl font-black uppercase mb-6 tracking-tighter leading-none text-center">Global Hub</h3>
-              <div className="h-1 w-16 bg-secondary mb-6" />
-              <p className="text-[12px] font-black text-tertiary uppercase tracking-[0.6em] text-center">GHAZIABAD INDIA</p>
+      {/* Strategic Hubs Section - Refined Proportions & Integrated Design */}
+      <section className="px-6 md:px-12 py-32 bg-primary relative overflow-hidden border-t-8 border-secondary">
+        <div className="absolute inset-0 technical-grid opacity-5 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center relative z-10">
+          {/* Legend Side - Streamlined & Compact */}
+          <div className="lg:col-span-4 space-y-12">
+            <div className="inline-flex items-center gap-4 px-6 py-3 bg-secondary text-white font-headline text-[11px] font-black uppercase tracking-[0.8em] shadow-3xl">
+              NATIONWIDE NETWORK
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-8">
+              Strategic <br /> <span className="text-tertiary italic font-black">Industrial Footprint.</span>
+            </h2>
+
+            <div className="space-y-6">
+              {[
+                { label: 'Unit 01', city: 'GHAZIABAD', sub: 'Primary Production', color: 'secondary' },
+                { label: 'Unit 02', city: 'FARIDABAD', sub: 'Manufacturing Hub', color: 'tertiary' }
+              ].map((loc, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ x: 10 }}
+                  className={`flex gap-6 items-center p-8 bg-primary-container border-l-8 border-${loc.color} shadow-2xl relative group overflow-hidden cursor-default`}
+                >
+                  <div className={`w-3 h-3 bg-${loc.color} rounded-full animate-pulse shadow-[0_0_15px_rgba(0,0,0,0.5)]`} />
+                  <div>
+                    <div className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em] mb-1">{loc.label}</div>
+                    <div className="text-2xl font-black text-white uppercase tracking-tighter">{loc.city}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="pt-8 border-t border-white/5">
+              <p className="text-white/40 text-[11px] font-black uppercase tracking-[0.4em] leading-relaxed max-w-xs">
+                Strategically positioned within the NCR industrial corridor for optimized logistics and rapid site response.
+              </p>
+            </div>
+          </div>
+
+          {/* Map Side - Strategic NCR Regional Focus with Provided Image */}
+          <div className="lg:col-span-7 relative h-[450px] flex items-center justify-center p-4 bg-primary group overflow-hidden border-2 border-white/5">
+            {/* Minimalist Tech Frame */}
+            <div className="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-secondary/20 z-20" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-tertiary/20 z-20" />
+
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* User Provided NCR Image */}
+              <motion.img
+                src={ncrMap}
+                alt="NCR Region Strategic Map"
+                className="w-full h-full object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-125"
+              />
+
+              {/* Precise markers calibrated to the provided image labels */}
+              {/* Unit 1: Ghaziabad — Pinpoint UP Sector (East) */}
+              <div className="absolute left-[65%] top-[45%] z-30 group/pin1">
+                <motion.div
+                  animate={{ scale: [1, 2, 1], opacity: [0.6, 0.2, 0.6] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-secondary rounded-full blur-[12px]"
+                />
+                <div className="w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 bg-secondary rounded-full shadow-[0_0_15px_#dc2626] flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
+                </div>
+                <div className="absolute left-6 -top-12 min-w-[200px] p-4 bg-primary/95 border-l-4 border-secondary shadow-5xl backdrop-blur-md opacity-0 group-hover/pin1:opacity-100 transition-all pointer-events-none">
+                  <div className="text-[11px] font-black text-white uppercase tracking-tighter">GHAZIABAD (UP)</div>
+                  <div className="text-[9px] font-black tracking-[0.2em] text-secondary">INDUSTRIAL UNIT 1</div>
+                </div>
+              </div>
+
+              {/* Unit 2: Faridabad — Pinpoint Haryana Sector (South-East) */}
+              <div className="absolute left-[56%] top-[68%] z-30 group/pin2 delay-1000">
+                <motion.div
+                  animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0.1, 0.5] }}
+                  transition={{ repeat: Infinity, duration: 2.2, delay: 0.5 }}
+                  className="w-7 h-7 -translate-x-1/2 -translate-y-1/2 bg-tertiary rounded-full blur-[10px]"
+                />
+                <div className="w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 bg-tertiary rounded-full shadow-[0_0_15px_#f97316] flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+                </div>
+                <div className="absolute right-6 top-6 min-w-[200px] p-4 bg-primary/95 border-r-4 border-tertiary shadow-5xl backdrop-blur-md text-right opacity-0 group-hover/pin1:group-hover/pin1:opacity-0 group-hover/pin2:opacity-100 transition-all pointer-events-none">
+                  <div className="text-[10px] font-black text-white uppercase tracking-tighter">FARIDABAD (HARYANA)</div>
+                  <div className="text-[9px] font-black tracking-[0.2em] text-tertiary">MANUFACTURING UNIT 2</div>
+                </div>
+              </div>
+
+              {/* Tactical Control Inset */}
+              <div className="absolute bottom-6 right-6 text-right p-4 border-r-2 border-secondary bg-primary/60 backdrop-blur-sm z-20">
+                <div className="text-xl font-black text-white uppercase tracking-tighter leading-none mb-1">STRATEGIC SYNC</div>
+                <div className="text-[8px] font-black text-tertiary uppercase tracking-[0.4em] mt-2">NCR LOGISTICS HUB</div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
-import { Hammer, Menu, X, ArrowUpRight } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
+import logo from '../assets/Screenshot 2026-04-05 at 10.02.09 AM.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -27,9 +28,9 @@ const Navbar = () => {
         <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-secondary via-tertiary to-secondary shadow-[0_4px_15px_#dc2626]" />
 
         <div className="max-w-7xl mx-auto w-full px-6 md:px-12 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3 group relative z-[60]">
-            <div className="w-12 h-12 bg-secondary flex items-center justify-center rounded-sm shadow-[0_0_15px_#dc2626] group-hover:bg-tertiary transition-all duration-500">
-              <Hammer size={24} className="text-white" />
+          <Link to="/" className="flex items-center gap-4 group relative z-[60]">
+            <div className="w-16 h-16 bg-white overflow-hidden flex items-center justify-center rounded-sm shadow-[0_0_15px_#dc2626] group-hover:scale-105 transition-all duration-500">
+              <img src={logo} alt="Mithlesh Forging Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-black text-white leading-none tracking-tighter uppercase font-headline">
@@ -58,9 +59,14 @@ const Navbar = () => {
               </Link>
             ))}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <button className="bg-secondary text-white px-8 py-3 text-[11px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:bg-tertiary transition-all">
+              <a 
+                href="https://wa.me/919818776372?text=Hello%20Mithlesh%20Forging,%20I%20would%20like%20to%20request%20a%20quote."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-secondary text-white px-8 py-3 text-[11px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:bg-tertiary transition-all inline-block"
+              >
                 Request Quote
-              </button>
+              </a>
             </motion.div>
           </nav>
 

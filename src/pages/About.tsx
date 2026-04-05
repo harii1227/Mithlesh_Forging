@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Rocket, Eye, CheckCircle2, Factory } from 'lucide-react'
+import mithleshImg from '../assets/mithlesh.jpg'
 
 const About = () => {
   return (
@@ -17,22 +18,43 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="lg:col-span-7 text-left"
           >
             <div className="inline-block bg-secondary text-primary border-t-[8px] border-tertiary px-10 py-4 mb-12 shadow-[0_0_50px_rgba(220,38,38,0.4)]">
               <div className="inline-block w-3 h-3 bg-white rounded-full mr-5 animate-ping shadow-[0_0_15px_#fff]" />
               <span className="font-headline font-black text-white text-[14px] uppercase tracking-[0.6em]">EST. 1994</span>
             </div>
-            <h1 className="text-6xl md:text-[130px] font-black leading-[0.8] mb-12 uppercase tracking-tighter">
+            <h1 className="text-6xl md:text-[110px] font-black leading-[0.85] mb-12 uppercase tracking-tighter">
               Forged <br /><span className="text-tertiary">Standards.</span>
             </h1>
-            <p className="text-xl md:text-3xl text-white/80 max-w-4xl mx-auto font-black uppercase tracking-[0.2em] leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/80 max-w-2xl font-black uppercase tracking-[0.2em] leading-relaxed">
               Leading the global industrial vanguard with high-precision <span className="text-secondary underline underline-offset-8">forging technology.</span>
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="lg:col-span-5 relative group"
+          >
+            <div className="absolute -inset-4 border-4 border-secondary opacity-30 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative overflow-hidden border-b-[20px] border-secondary shadow-5xl">
+              <img 
+                src="/images/friction-screw-press-heavy.jpg" 
+                className="w-full h-[500px] object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[2s]" 
+                alt="Forging Unit" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-10 left-10 p-6 bg-secondary text-white font-black uppercase text-[12px] tracking-[0.5em]">
+                HEAVY DUTY VANGUARD
+              </div>
+            </div>
           </motion.div>
         </div>
       </header>
@@ -66,8 +88,8 @@ const About = () => {
             <div className="absolute -inset-10 border-[12px] border-secondary opacity-20 transform rotate-3" />
             <img
               className="relative z-10 w-full h-[800px] object-cover shadow-[0_60px_120px_rgba(0,0,0,0.8)] border-[20px] border-white/5 grayscale group-hover:grayscale-0 transition-all duration-[3s] transform group-hover:scale-[1.02] bg-primary"
-              src="https://images.unsplash.com/photo-1504917595217-d4dc5f645060?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-              alt="Engineering Inspection"
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="High Precision Industrial Forging"
             />
           </div>
         </div>
@@ -131,6 +153,92 @@ const About = () => {
                 <span className="text-[14px] text-white uppercase font-black tracking-[1.2em] animate-pulse">QUALITY PASS</span>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Strategic Mission & Vision - Redesigned for High Impact */}
+      <section className="py-32 px-6 md:px-12 bg-primary relative overflow-hidden">
+        <div className="absolute inset-0 technical-grid opacity-5 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-1 bg-white/5 border border-white/10 shadow-6xl backdrop-blur-sm overflow-hidden">
+            {/* Mission Sector */}
+            <div className="lg:col-span-8 p-12 md:p-20 relative group">
+              <div className="absolute top-0 left-0 w-32 h-[4px] bg-secondary" />
+              <div className="absolute top-0 left-0 w-[4px] h-32 bg-secondary" />
+              
+              <Rocket className="text-secondary w-20 h-20 mb-12 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-10 leading-none">
+                Strategic <br /> <span className="text-secondary italic">Mission.</span>
+              </h2>
+              <p className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight max-w-2xl opacity-90">
+                To eliminate production downtime globally by providing forging machinery that combines <span className="text-secondary">extreme force</span> with <span className="text-tertiary underline decoration-secondary">millimetric precision.</span>
+              </p>
+            </div>
+
+            {/* Vision Sector */}
+            <div className="lg:col-span-4 p-12 md:p-20 bg-primary-container relative border-t lg:border-t-0 lg:border-l border-white/10">
+              <div className="absolute bottom-0 right-0 w-32 h-[4px] bg-tertiary" />
+              <div className="absolute bottom-0 right-0 w-[4px] h-32 bg-tertiary" />
+
+              <Eye className="text-tertiary w-16 h-16 mb-12 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
+                Vision <br /> <span className="text-tertiary italic">2030.</span>
+              </h3>
+              <p className="text-lg font-black text-white/70 uppercase tracking-widest leading-relaxed border-l-4 border-tertiary pl-6">
+                Becoming the absolute benchmark for zero-defect industrial machinery and high-tonnage engineering globally.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Director's Profile Section - Enhanced Original Quality */}
+      <section className="py-40 px-6 md:px-12 bg-primary relative border-t-8 border-secondary overflow-hidden">
+        <div className="absolute inset-0 technical-grid opacity-5 pointer-events-none" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 relative z-10 items-center">
+          <div className="lg:col-span-4 relative group">
+            <div className="absolute -inset-10 border-[12px] border-tertiary opacity-40 transform skew-y-3" />
+            <div className="relative z-10 aspect-square bg-primary-container border-[12px] border-white/10 flex items-center justify-center overflow-hidden shadow-6xl">
+              <img 
+                src={mithleshImg} 
+                alt="Mithlesh Kuumar" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-8 space-y-16">
+            <div>
+              <div className="inline-block px-10 py-5 bg-secondary text-white font-headline text-[12px] font-black uppercase tracking-[0.8em] mb-12 shadow-3xl">
+                Vanguard Leadership
+              </div>
+              <h2 className="text-6xl md:text-[90px] font-black text-white uppercase tracking-tighter leading-[0.8] mb-8">
+                Mithlesh <br /> <span className="text-secondary italic">Kuumar.</span>
+              </h2>
+              <div className="text-3xl font-black text-tertiary uppercase tracking-widest mt-4 border-l-8 border-tertiary pl-10 underline decoration-8 underline-offset-[20px]">
+                Director & Founder
+              </div>
+            </div>
+            
+            <p className="text-white/60 text-2xl font-black uppercase tracking-tight leading-relaxed max-w-3xl">
+              Pioneering industrial precision for over three decades, specializing in high-tonnage mechanical press architecture and global forging standards.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 opacity-90">
+              <div className="space-y-6 p-10 bg-primary-container border-t-8 border-secondary shadow-2xl">
+                <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.5em] block">Core Manufacturing Scope</span>
+                <p className="text-xl font-black text-white uppercase leading-relaxed tracking-tight underline decoration-4 decoration-tertiary underline-offset-8">
+                  Friction Screw Press, Forging Screw Press, & High-Performance Power Press Machine.
+                </p>
+              </div>
+              <div className="space-y-6 p-10 bg-primary-container border-t-8 border-tertiary shadow-2xl">
+                <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.5em] block">Technical Integrity</span>
+                <p className="text-xl font-black text-white uppercase leading-relaxed tracking-tight underline decoration-4 decoration-secondary underline-offset-8">
+                   Specialized Repair Operations & Global Maintenance Systems.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

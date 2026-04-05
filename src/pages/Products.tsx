@@ -1,26 +1,102 @@
-import { motion } from 'framer-motion'
-import { ChevronRight, Info, Zap, CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronRight, Zap, CheckCircle2, X, Settings2, Gauge, Shield, Cpu } from 'lucide-react'
+
+interface Product {
+  id: string
+  name: string
+  type: string
+  description: string
+  image: string
+  specs: { label: string; value: string }[]
+  features: string[]
+}
 
 const Products = () => {
-  const screwPressSpecs = [
-    { label: 'Nominal Force (Tons)', v1: '100', v2: '250', v3: '500' },
-    { label: 'Max. Stroke (mm)', v1: '280', v2: '350', v3: '480' },
-    { label: 'Screw Diameter (mm)', v1: '140', v2: '185', v3: '240' },
-    { label: 'Blows per Min.', v1: '22', v2: '18', v3: '14' },
-    { label: 'Motor Power (HP)', v1: '10', v2: '25', v3: '50' },
-  ]
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
-  const powerPressSpecs = [
-    { label: 'Frame Type', v1: 'Open Back', v2: 'Pillar Type', v3: 'Bridge Type' },
-    { label: 'Stroke Adj. (mm)', v1: '10-100', v2: '20-150', v3: '25-200' },
-    { label: 'Crankshaft (RPM)', v1: '60', v2: '45', v3: '35' },
-    { label: 'Bed Size (mm)', v1: '700x450', v2: '900x600', v3: '1200x800' },
+  const products: Product[] = [
+    {
+      id: 'friction-screw-heavy',
+      name: 'Heavy-Duty Friction Screw Press',
+      type: 'FORGING PRESS',
+      description: 'Engineered for high-tonnage forging operations with maximum kinetic energy transfer and ultra-rigid frame stability.',
+      image: '/images/friction-screw-press-heavy.jpg',
+      features: ['Dual Friction Drive', 'Oversized Screw Diameter', 'Precision Slide Guidance', 'Heavy-Duty Forged Bed'],
+      specs: [
+        { label: 'Capacity', value: '300 MT — 1000 MT' },
+        { label: 'Screw Diameter', value: '250 mm — 400 mm' },
+        { label: 'Max Stroke', value: '450 mm — 600 mm' },
+        { label: 'Bed Size', value: '1200 x 1200 mm' },
+        { label: 'Motor Power', value: '75 HP — 150 HP' }
+      ]
+    },
+    {
+      id: 'friction-screw-standard',
+      name: 'Standard Friction Screw Press',
+      type: 'PRECISION FORGING',
+      description: 'The industry workhorse for medium-sized hot and cold forging components, offering perfect balance of speed and force.',
+      image: '/images/friction-screw-press-standard.jpg',
+      features: ['Adjustable Blow Force', 'Easy Maintenance Access', 'Rapid Cycle Time', 'High Thermal Resistance'],
+      specs: [
+        { label: 'Capacity', value: '50 MT — 250 MT' },
+        { label: 'Screw Diameter', value: '140 mm — 220 mm' },
+        { label: 'Max Stroke', value: '250 mm — 400 mm' },
+        { label: 'Bed Size', value: '800 x 800 mm' },
+        { label: 'Motor Power', value: '15 HP — 40 HP' }
+      ]
+    },
+    {
+      id: 'h-type-power-press',
+      name: 'H-Type Power Press',
+      type: 'MECHANICAL PRESS',
+      description: 'Pillar-type structural design for zero-deflection operations in heavy-duty blanking and deep drawing applications.',
+      image: '/images/power-press-h-type.jpg',
+      features: ['Eight-Point Guidance', 'Geared Drive System', 'Pneumatic Clutch', 'Electronic Overload Protection'],
+      specs: [
+        { label: 'Capacity', value: '100 T — 500 T' },
+        { label: 'Stroke', value: '150 mm — 350 mm' },
+        { label: 'Speed', value: '20 — 45 SPM' },
+        { label: 'Bed Area', value: '1500 x 1000 mm' },
+        { label: 'Drive', value: 'Direct Gear Drive' }
+      ]
+    },
+    {
+      id: 'c-type-power-press',
+      name: 'C-Type Eccentric Press',
+      type: 'GENERAL MACHINING',
+      description: 'Versatile "open-back" design for easy material handling and high-speed stamping operations in a compact footprint.',
+      image: '/images/power-press-c-type.jpg',
+      features: ['Heavy Cast Frame', 'Adjustable Stroke', 'Mechanical Safety Lock', 'Interchangeable Bolster'],
+      specs: [
+        { label: 'Capacity', value: '5 T — 250 T' },
+        { label: 'Stroke Range', value: '5 mm — 120 mm' },
+        { label: 'Speed', value: '45 — 70 SPM' },
+        { label: 'Drive', value: 'Single Flywheel' },
+        { label: 'Frame', value: 'Rigid C-Section' }
+      ]
+    },
+    {
+      id: 'shearing-machine',
+      name: 'Mechanical Shearing Machine',
+      type: 'METAL CUTTING',
+      description: 'KIRAN-engineered precision cutting system for heavy metal plates with micron-level accuracy and clean-cut edges.',
+      image: '/images/shearing-machine.jpg',
+      features: ['High-Carbon Blades', 'Hydraulic Hold-Downs', 'Precision Backgauge', 'Rapid Clearance Adj.'],
+      specs: [
+        { label: 'Cutting Length', value: '1500 — 4000 mm' },
+        { label: 'Max Thickness', value: '4 mm — 25 mm' },
+        { label: 'Blade Material', value: 'D2 / HCHCr Steel' },
+        { label: 'Backgauge Range', value: '1000 mm' },
+        { label: 'Cut Angle', value: '1.5° — 4°' }
+      ]
+    }
   ]
 
   return (
     <div className="overflow-hidden bg-primary text-white">
-      {/* Hero Section - Geometric Intense */}
-      <section className="relative min-h-[60vh] flex items-center px-6 md:px-12 py-32 overflow-hidden chipka-hero bg-primary">
+      {/* Hero Section - Refined Proportions */}
+      <section className="relative min-h-[50vh] flex items-center px-6 md:px-12 py-24 overflow-hidden chipka-hero bg-primary">
         <div className="absolute inset-0 z-0 technical-grid opacity-30" />
         <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary geometric-overlay opacity-80" />
         <div className="absolute inset-0 z-0">
@@ -32,175 +108,176 @@ const Products = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-end justify-between gap-16">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-5xl"
           >
-            <div className="inline-flex items-center gap-4 px-8 py-4 bg-secondary text-white font-headline text-[14px] font-black uppercase tracking-[1em] mb-12 shadow-[0_0_50px_rgba(220,38,38,0.5)]">
-              CATALOG 2024
+            <div className="inline-flex items-center gap-4 px-8 py-4 bg-secondary text-white font-headline text-[12px] font-black uppercase tracking-[1em] mb-12 shadow-[0_0_50px_rgba(220,38,38,0.3)]">
+              MITHLESH FORGING PRODUCTION 2024
             </div>
-            <h1 className="text-6xl md:text-[140px] font-black text-white leading-[0.8] tracking-tighter uppercase mb-6">
-              Industrial <br /> <span className="text-tertiary">Endurance.</span>
+            <h1 className="text-5xl md:text-[110px] font-black text-white leading-[0.8] tracking-tighter uppercase mb-6">
+              Precision <br /> <span className="text-tertiary italic font-black">Machinery.</span>
             </h1>
-          </motion.div>
-          <div className="max-w-md pb-12 border-l-[16px] border-tertiary pl-12 bg-primary/80 backdrop-blur-md p-10 shadow-[0_40px_80px_rgba(0,0,0,0.6)] relative">
-            <div className="absolute top-0 right-0 p-8 technical-grid w-24 h-24 opacity-20" />
-            <p className="text-white text-2xl font-black leading-relaxed font-black uppercase tracking-[0.1em] relative z-10">
-              Forging infrastructure built for extreme tonnage.
+            <p className="max-w-xl text-xl text-white/60 font-black uppercase tracking-tight mt-8 border-l-8 border-tertiary pl-8">
+              Forging infrastructure built for extreme tonnage and precision.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Screw Press Table - High Contrast Palette */}
-      <section className="py-40 px-6 md:px-12 bg-primary relative border-secondary border-t-[16px]">
-        <div className="absolute right-0 top-0 w-1/3 h-full bg-secondary/5 skew-x-[-12deg] transform translate-x-1/2" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-start">
-            <div className="lg:col-span-5 relative">
-              <span className="text-tertiary font-headline text-[14px] font-black uppercase tracking-[1em] mb-8 block underline decoration-secondary decoration-8 underline-offset-8">SECTION 01</span>
-              <h2 className="text-5xl md:text-[85px] font-black text-white uppercase mb-12 tracking-tighter leading-[0.85]">Friction Screw Presses.</h2>
-              <p className="text-white/40 text-2xl leading-relaxed font-black uppercase tracking-tight mb-20">
-                Manufacturing India's standard for high-volume forging intensity.
-              </p>
-
-              <div className="relative group overflow-hidden border-[12px] border-primary-container p-4 shadow-4xl transition-all duration-[2s] bg-white/5">
-                <img
-                  className="w-full h-[600px] object-cover grayscale brightness-[0.4] contrast-150 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[2s] group-hover:scale-110"
-                  src="/detail.png"
-                  alt="Component Detail"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-16 left-16 p-12 bg-secondary text-white text-[14px] font-black uppercase tracking-[0.5em] shadow-4xl group-hover:bg-tertiary">
-                  ULTRA-STABILITY FRAME
+      {/* Product Gallery - Bento Style */}
+      <section className="py-24 px-6 md:px-12 bg-primary relative border-t-8 border-secondary">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-20">
+            <span className="text-tertiary font-headline font-black text-[12px] uppercase tracking-[0.8em] mb-4 block border-l-4 border-secondary pl-6">MACHINERY CATALOG</span>
+            <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
+              Heavy-Duty <br /> <span className="text-secondary italic font-black">Inventory.</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product, idx) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                onClick={() => setSelectedProduct(product)}
+                className="group relative bg-primary-container border-b-8 border-secondary overflow-hidden cursor-pointer shadow-4xl hover:shadow-secondary/20 transition-all duration-500"
+              >
+                <div className="h-[400px] overflow-hidden">
+                  <img
+                    src={product.image}
+                    className="w-full h-full object-cover grayscale brightness-[0.5] contrast-125 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-1000"
+                    alt={product.name}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-90" />
                 </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="bg-primary-container border-t-[20px] border-secondary shadow-[0_60px_120px_rgba(0,0,0,0.8)] overflow-hidden relative">
-                <div className="absolute top-0 right-0 p-12 technical-grid w-48 h-48 opacity-20" />
-                <div className="overflow-x-auto custom-scrollbar">
-                  <table className="w-full text-left border-collapse relative z-10 min-w-[600px]">
-                    <thead>
-                      <tr className="bg-secondary text-white uppercase font-headline text-[12px]">
-                        <th className="p-10 font-black tracking-widest">METRICS</th>
-                        <th className="p-10 font-black tracking-widest text-center bg-tertiary">FSP-100</th>
-                        <th className="p-10 font-black tracking-widest text-center bg-tertiary/80">FSP-250</th>
-                        <th className="p-10 font-black tracking-widest text-center bg-tertiary/60">FSP-500</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {screwPressSpecs.map((spec, idx) => (
-                        <tr key={spec.label} className={`${idx % 2 === 0 ? '' : 'bg-primary/30'} border-b border-white/5 transition-all hover:bg-secondary/20`}>
-                          <td className="p-10 font-headline text-[15px] font-black text-white uppercase tracking-[0.1em]">{spec.label}</td>
-                          <td className="p-10 text-center text-tertiary text-lg font-black tracking-[0.2em]">{spec.v1}</td>
-                          <td className="p-10 text-center text-tertiary text-lg font-black tracking-[0.2em]">{spec.v2}</td>
-                          <td className="p-10 text-center text-tertiary text-lg font-black tracking-[0.2em]">{spec.v3}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="text-[10px] font-black text-secondary tracking-[0.5em] mb-3">{product.type}</div>
+                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-4 leading-none group-hover:text-tertiary transition-colors">{product.name}</h3>
+                  <div className="flex items-center gap-4 text-tertiary font-black uppercase text-[11px] tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity">
+                    VIEW SPECIFICATIONS <ChevronRight size={18} />
+                  </div>
                 </div>
-              </div>
-              <div className="mt-16 flex items-center gap-10 p-16 bg-secondary text-white border-l-[16px] border-tertiary shadow-4xl">
-                <Info size={48} className="text-tertiary shrink-0" />
-                <p className="text-[14px] uppercase font-black tracking-[0.4em] leading-relaxed">
-                  Technical specifications subject to extreme environment modifications.
-                </p>
-              </div>
-            </div>
+
+                <div className="absolute top-6 right-6">
+                  <div className="w-12 h-12 bg-secondary text-white flex items-center justify-center shadow-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                    <Zap size={20} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Power Press Table - Geometric Split Over Navy */}
-      <section className="py-40 px-6 md:px-12 bg-primary relative border-primary border-y-[24px] overflow-hidden">
-        <div className="absolute right-0 bottom-0 w-2/3 h-full bg-secondary geometric-overlay opacity-10 pointer-events-none" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-32 items-center relative z-10">
-          <div className="lg:col-span-7 order-2 lg:order-1">
-            <div className="bg-primary-container border-t-[20px] border-tertiary shadow-[0_60px_120px_rgba(0,0,0,0.8)] overflow-hidden relative">
-              <div className="overflow-x-auto custom-scrollbar">
-                <table className="w-full text-left border-collapse min-w-[600px]">
-                  <thead>
-                    <tr className="bg-tertiary text-primary font-headline text-[12px] uppercase">
-                      <th className="p-10 font-black tracking-widest">CONFIGURATIONS</th>
-                      <th className="p-10 font-black tracking-widest text-center bg-secondary text-white">50T</th>
-                      <th className="p-10 font-black tracking-widest text-center bg-secondary/80 text-white">100T</th>
-                      <th className="p-10 font-black tracking-widest text-center bg-secondary/60 text-white">200T</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {powerPressSpecs.map((spec, idx) => (
-                      <tr key={spec.label} className={`${idx % 2 === 0 ? '' : 'bg-primary/50'} border-b border-white/5 transition-all hover:bg-tertiary/20`}>
-                        <td className="p-10 font-headline text-[15px] font-black text-white uppercase tracking-[0.1em]">{spec.label}</td>
-                        <td className="p-10 text-center text-secondary text-lg font-black tracking-[0.2em]">{spec.v1}</td>
-                        <td className="p-10 text-center text-secondary text-lg font-black tracking-[0.2em]">{spec.v2}</td>
-                        <td className="p-10 text-center text-secondary text-lg font-black tracking-[0.2em]">{spec.v3}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 order-1 lg:order-2 space-y-16">
-            <div>
-              <span className="text-secondary font-headline text-[14px] font-black uppercase tracking-[1em] mb-8 block underline decoration-tertiary decoration-8">SECTION 02</span>
-              <h2 className="text-5xl md:text-[85px] font-black text-white uppercase mb-12 tracking-tighter leading-[0.8]">Power Press Systems.</h2>
-              <p className="text-white/40 text-2xl leading-relaxed font-black uppercase tracking-tight opacity-100">
-                Optimized high-velocity blanking.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-8 pt-8">
-              <IconDetail icon={<Zap className="text-secondary" />} text="Pneumatic Clutch Systems" color="secondary" />
-              <IconDetail icon={<CheckCircle2 className="text-secondary" />} text="Central Lubrication Protocol" color="secondary" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Model Block - Geometric Intense */}
-      <section className="py-40 px-6 md:px-12 bg-primary relative">
-        <div className="absolute inset-0 technical-grid opacity-30 pointer-events-none" />
-        <div className="max-w-7xl mx-auto p-20 md:p-40 bg-primary-container relative overflow-hidden border-b-[32px] border-secondary shadow-[0_60px_150px_rgba(0,0,0,0.8)] group">
-          <div className="absolute top-0 right-0 w-full h-full bg-secondary geometric-overlay opacity-10 -z-10" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center relative z-10">
-            <div className="space-y-16">
-              <span className="text-tertiary font-headline font-black text-[14px] uppercase tracking-[1em]">PLATFORM 03</span>
-              <h3 className="text-6xl md:text-[100px] font-black text-white uppercase tracking-tighter leading-[0.8]">
-                Vanguard <br /> Forging Line.
-              </h3>
-              <div className="flex flex-wrap gap-10 uppercase font-headline text-[14px] font-black tracking-[0.6em]">
-                {["Titanium Alloys", "PLC Sync Control"].map(tag => (
-                  <div key={tag} className="px-10 py-6 border-4 border-secondary/30 bg-primary hover:bg-secondary text-white transition-all cursor-default font-black shadow-4xl">{tag}</div>
-                ))}
-              </div>
-              <button className="text-[14px] font-black uppercase tracking-[1em] text-secondary flex items-center gap-6 group hover:text-tertiary underline decoration-primary-container decoration-8 underline-offset-[20px]">
-                COMMISSION PROJECT <ChevronRight size={24} className="group-hover:translate-x-10 transition-transform" />
+      {/* Product Detail Modal */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProduct(null)}
+              className="absolute inset-0 bg-primary/95 backdrop-blur-xl"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-7xl bg-primary shadow-5xl border-t-[16px] border-secondary flex flex-col lg:flex-row overflow-hidden max-h-[90vh]"
+            >
+              <button 
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-8 right-8 z-50 p-4 bg-secondary text-white hover:bg-tertiary transition-colors shadow-4xl group"
+              >
+                <X size={24} className="group-hover:rotate-90 transition-transform" />
               </button>
-            </div>
-            <div className="h-[700px] relative overflow-hidden shadow-4xl border-l-[16px] border-secondary">
-              <img src="/inspection.png" className="w-full h-full object-cover grayscale brightness-[0.3] contrast-150 group-hover:grayscale-0 group-hover:scale-105 duration-[4s] transition-transform" alt="Detail" />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-60" />
-            </div>
+
+              <div className="lg:w-1/2 relative min-h-[350px] lg:min-h-full">
+                <img 
+                  src={selectedProduct.image} 
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700" 
+                  alt={selectedProduct.name} 
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent" />
+                <div className="absolute bottom-12 left-12 p-8 bg-secondary/95 backdrop-blur-md text-white border-l-[12px] border-tertiary shadow-3xl">
+                  <div className="text-[11px] font-black tracking-[0.5em] mb-2 uppercase">PRODUCTION READY</div>
+                  <div className="text-4xl font-black uppercase tracking-tighter">AUTHENTIC UNIT</div>
+                </div>
+              </div>
+
+              {/* Content Side */}
+              <div className="lg:w-1/2 p-10 md:p-16 overflow-y-auto custom-scrollbar">
+                <div className="inline-block px-6 py-2 bg-secondary/10 text-secondary text-[11px] font-black uppercase tracking-[0.5em] mb-10 border-l-4 border-secondary">
+                  TECHNICAL DOSSIER
+                </div>
+                <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
+                  {selectedProduct.name}
+                </h2>
+                <p className="text-white/50 text-lg leading-relaxed font-black uppercase tracking-tight mb-12">
+                  {selectedProduct.description}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                  <div className="space-y-8">
+                    <h4 className="flex items-center gap-4 text-tertiary text-[12px] font-black uppercase tracking-[0.4em]">
+                      <Settings2 size={20} /> CORE METRICS
+                    </h4>
+                    <div className="space-y-4">
+                      {selectedProduct.specs.map(spec => (
+                        <div key={spec.label} className="flex justify-between items-end border-b border-white/10 pb-3 group">
+                          <span className="text-[11px] font-black text-white/40 uppercase tracking-widest group-hover:text-white transition-colors">{spec.label}</span>
+                          <span className="text-md font-black text-secondary tracking-wider">{spec.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-8">
+                    <h4 className="flex items-center gap-4 text-secondary text-[12px] font-black uppercase tracking-[0.4em]">
+                      <Shield size={20} /> VANGUARD FEATURES
+                    </h4>
+                    <div className="grid grid-cols-1 gap-4">
+                      {selectedProduct.features.map(feature => (
+                        <div key={feature} className="flex items-center gap-4 p-4 bg-primary-container border-l-4 border-tertiary shadow-xl hover:translate-x-2 transition-transform">
+                          <CheckCircle2 size={18} className="text-tertiary" />
+                          <span className="text-[11px] font-black text-white uppercase tracking-tight">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="flex items-center gap-6 p-8 bg-primary-container border-t-4 border-secondary">
+                    <Gauge size={32} className="text-secondary" />
+                    <div>
+                      <div className="text-[10px] font-black text-white/30 tracking-[0.4em] uppercase">Status</div>
+                      <div className="text-md font-black text-white tracking-widest uppercase">OPTIMIZED</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6 p-8 bg-primary-container border-t-4 border-tertiary">
+                    <Cpu size={32} className="text-tertiary" />
+                    <div>
+                      <div className="text-[10px] font-black text-white/30 tracking-[0.4em] uppercase">Control</div>
+                      <div className="text-md font-black text-white tracking-widest uppercase">PLC SYNC</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
-
-const IconDetail = ({ icon, text, color }: { icon: any, text: string, color: string }) => (
-  <div className={`flex items-center gap-10 p-12 bg-primary border-l-[16px] border-${color} group hover:shadow-4xl transition-all shadow-[0_30px_60px_rgba(0,0,0,0.6)]`}>
-    <div className="group-hover:scale-150 transition-all duration-700 shadow-2xl">{icon}</div>
-    <span className="text-[16px] font-black text-white uppercase tracking-[0.4em]">{text}</span>
-  </div>
-)
 
 export default Products

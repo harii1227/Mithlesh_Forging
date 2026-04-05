@@ -1,13 +1,14 @@
-import { Hammer, Mail, Phone, MapPin, Globe, Share2, Factory } from 'lucide-react'
+import { MapPin, Phone, Globe, Share2, Mail, Factory } from 'lucide-react'
+import logo from '../assets/Screenshot 2026-04-05 at 10.02.09 AM.png'
 
 const Footer = () => {
   return (
     <footer className="w-full bg-surface-container-low border-t border-white/5 pt-20 pb-10 px-6 md:px-12 font-body text-sm tracking-wide">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center">
-              <Hammer size={16} className="text-on-primary" />
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-12 bg-white overflow-hidden flex items-center justify-center rounded-sm">
+              <img src={logo} alt="Mithlesh Forging Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-xl font-bold font-headline text-white uppercase tracking-tighter">Mithlesh Forging</span>
           </div>
@@ -35,8 +36,8 @@ const Footer = () => {
           <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-[11px] font-headline">Contact Details</h4>
           <ul className="space-y-6 text-on-surface-variant">
             <li className="flex items-start gap-4">
-              <MapPin size={18} className="text-primary mt-1 shrink-0" />
-              <span className="text-[13px] leading-relaxed">Plot No. 39/253, Masuri, Parson Jindal Nagar, Ghaziabad, Uttar Pradesh</span>
+              <MapPin size={18} className="text-secondary mt-1 shrink-0" />
+              <span className="text-[13px] leading-relaxed uppercase font-black tracking-tight">Plot no - 39/253, Masuri, Ghaziabad (UP) — 245101</span>
             </li>
             <li className="flex items-center gap-4">
               <Phone size={18} className="text-primary shrink-0" />
