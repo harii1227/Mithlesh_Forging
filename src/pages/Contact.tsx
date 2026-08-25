@@ -13,7 +13,7 @@ const Contact = () => {
     const formData = new FormData(e.currentTarget)
     try {
       // Fix: Formspree requires /f/ prefix for email endpoints
-      const response = await fetch('https://formspree.io/f/rs22201227@gmail.com', {
+      const response = await fetch('https://formspree.io/f/mithleshforging@gmail.com', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
