@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
@@ -12,8 +13,12 @@ import Contact from './pages/Contact'
 function App() {
   const location = useLocation()
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [location.pathname])
+
   return (
-    <div className="min-h-screen bg-surface flex flex-col grain-overlay">
+    <div className="flex min-h-screen flex-col bg-steel-50">
       <Navbar />
       <main className="flex-grow">
         <AnimatePresence mode="wait">
@@ -34,10 +39,10 @@ function App() {
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.4, ease: "easeInOut" }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.25, ease: 'easeInOut' }}
   >
     {children}
   </motion.div>

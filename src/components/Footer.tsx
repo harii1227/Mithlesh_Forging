@@ -1,99 +1,128 @@
-import { MapPin, Phone, Globe, Share2, Mail, Factory } from 'lucide-react'
-import logo from '../assets/Screenshot 2026-04-05 at 10.02.09 AM.png'
+import { Link } from 'react-router-dom'
+import { MapPin, Phone, Mail, ShieldCheck, BadgeCheck } from 'lucide-react'
+import logo from '../assets/brand/logo.png'
+import { company, navLinks, products, units } from '../data/site'
+import { Gear } from './ui'
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-surface-container-low border-t border-white/5 pt-20 pb-10 px-6 md:px-12 font-body text-sm tracking-wide">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-        <div className="md:col-span-1">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-white overflow-hidden flex items-center justify-center rounded-sm">
-              <img src={logo} alt="Mithlesh Forging Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-xl font-bold font-headline text-white uppercase tracking-tighter">Mithlesh Forging</span>
+    <footer className="relative overflow-hidden bg-navy-950 text-steel-300">
+      <div className="h-1 bg-gradient-to-r from-brand-600 via-steel-300 to-brand-600" />
+      <Gear className="pointer-events-none absolute -left-32 -bottom-32 h-[420px] w-[420px] text-white/[0.04]" teeth={14} />
+
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-5 pt-10 pb-8 md:grid-cols-2 md:gap-12 md:px-10 md:pt-16 md:pb-12 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+        {/* Brand */}
+        <div className="flex items-center justify-between gap-4 md:block">
+          <div className="inline-block rounded-lg bg-white px-3 py-2.5 md:px-5 md:py-4">
+            <img src={logo} alt={company.name} className="h-12 w-auto md:h-20" />
           </div>
-          <p className="text-on-surface-variant leading-relaxed mb-8">
-            Setting the global benchmark for high-precision forging and mechanical press machinery since 1985.
+          <p className="mt-6 hidden max-w-xs text-sm leading-relaxed text-steel-400 md:block">
+            Manufacturers of friction screw presses, forging presses, power presses and shearing machines for forging shops in India and abroad.
           </p>
-          <div className="flex gap-3">
-            <SocialIcon icon={<Globe size={18} />} />
-            <SocialIcon icon={<Share2 size={18} />} />
-            <SocialIcon icon={<Mail size={18} />} />
+          <div className="flex flex-col gap-2 md:mt-6 md:flex-row md:flex-wrap md:gap-3">
+            <span className="inline-flex items-center gap-2 rounded-md border border-white/10 px-3 py-1.5 text-[11px] text-white md:py-2 md:text-xs">
+              <ShieldCheck size={14} className="text-brand-400" /> ISO 9001:2015
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-md border border-white/10 px-3 py-1.5 text-[11px] text-white md:py-2 md:text-xs">
+              <BadgeCheck size={14} className="text-brand-400" /> MSME Registered
+            </span>
           </div>
         </div>
 
-        <div>
-          <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-[11px] font-headline">Machinery</h4>
-          <ul className="space-y-4">
-            <FooterLink text="Friction Screw Press" />
-            <FooterLink text="Forging Screw Press" />
-            <FooterLink text="Power Press C-Type" />
-            <FooterLink text="Power Press H-Type" />
+        {/* Machinery — desktop only; on mobile the Products link covers it */}
+        <div className="hidden md:block">
+          <h4 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-white">Machinery</h4>
+          <ul className="space-y-3 text-sm">
+            {products.map((p) => (
+              <li key={p.id}>
+                <Link to={`/products?machine=${p.id}`} className="transition-colors hover:text-white">{p.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* Company links — inline row on mobile, list on desktop */}
         <div>
-          <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-[11px] font-headline">Contact Details</h4>
-          <ul className="space-y-6 text-on-surface-variant">
-            <li className="flex items-start gap-4">
-              <MapPin size={18} className="text-secondary mt-1 shrink-0" />
-              <span className="text-[13px] leading-relaxed uppercase font-black tracking-tight">Plot no - 39/253, Masuri, Ghaziabad (UP) — 245101</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <Phone size={18} className="text-primary shrink-0" />
-              <span className="text-[13px]">+91 98187-76372</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <Mail size={18} className="text-primary shrink-0" />
-              <span className="text-[13px]">mithleshforging@gmail.com</span>
-            </li>
+          <h4 className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white md:mb-5">Company</h4>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm md:block md:space-y-3">
+            {navLinks.map((l) => (
+              <li key={l.path}>
+                <Link to={l.path} className="transition-colors hover:text-white">{l.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* Contact */}
         <div>
-          <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-[11px] font-headline">Accreditations</h4>
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 p-4 bg-surface-container machined-edge">
-              <Factory size={24} className="text-tertiary" />
-              <div>
-                <div className="text-white text-xs font-bold uppercase tracking-widest">ISO 9001:2015</div>
-                <div className="text-[10px] text-on-surface-variant uppercase mt-1">Quality certified</div>
-              </div>
+          <h4 className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white md:mb-5">Get in touch</h4>
+
+          {/* Mobile: compact plant cards + tap-to-contact buttons */}
+          <div className="space-y-3 md:hidden">
+            <div className="grid grid-cols-2 gap-3">
+              {units.map((u) => (
+                <Link key={u.id} to="/contact" className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                  <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.15em] text-steel-400">
+                    <MapPin size={12} className="text-brand-400" /> {u.label}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold text-white">{u.city}</span>
+                  <span className="block text-xs text-steel-400">{u.state}</span>
+                </Link>
+              ))}
             </div>
-            <div className="p-4 bg-surface-container-high machined-edge">
-              <div className="text-white text-xs font-bold uppercase tracking-widest mb-1">MSME Registered</div>
-              <div className="text-[10px] text-primary uppercase font-bold">Government of India</div>
+            <div className="grid grid-cols-2 gap-3">
+              <a href={company.phoneHref} className="flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-3 text-sm font-semibold text-white">
+                <Phone size={15} /> Call us
+              </a>
+              <a href={`mailto:${company.email}`} className="flex items-center justify-center gap-2 rounded-lg border border-white/15 py-3 text-sm font-semibold text-white">
+                <Mail size={15} /> Email us
+              </a>
             </div>
           </div>
+
+          {/* Desktop: full addresses */}
+          <ul className="hidden space-y-5 text-sm md:block">
+            {units.map((u) => (
+              <li key={u.id} className="flex gap-3">
+                <MapPin size={17} className="mt-0.5 shrink-0 text-brand-400" />
+                <span>
+                  <span className="block font-semibold text-white">{u.label} · {u.city}</span>
+                  <span className="leading-relaxed">{u.address}</span>
+                </span>
+              </li>
+            ))}
+            <li>
+              <a href={company.phoneHref} className="flex items-center gap-3 hover:text-white">
+                <Phone size={17} className="text-brand-400" /> {company.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${company.email}`} className="flex items-center gap-3 break-all hover:text-white">
+                <Mail size={17} className="shrink-0 text-brand-400" /> {company.email}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[11px] text-on-surface-variant font-bold uppercase tracking-widest">
-          © 2024 Mithlesh Forging India Pvt. Ltd. All Rights Reserved.
-        </div>
-        <div className="flex gap-8 text-[11px] text-on-surface-variant font-bold uppercase tracking-widest">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Term of Service</a>
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-5 pr-20 md:items-center text-[11px] text-steel-500 md:flex-row md:px-10 md:py-6 md:text-xs">
+          <span>© {new Date().getFullYear()} {company.name} All rights reserved.</span>
+          <span>
+            Designed &amp; developed by{' '}
+            <a
+              href="https://arh-consultancy.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-steel-300 underline-offset-4 transition-colors hover:text-white hover:underline"
+            >
+              ARH Consultancy Private Limited
+            </a>
+          </span>
         </div>
       </div>
     </footer>
   )
 }
-
-const SocialIcon = ({ icon }: { icon: React.ReactNode }) => (
-  <div className="w-10 h-10 bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all cursor-pointer machined-edge">
-    {icon}
-  </div>
-)
-
-const FooterLink = ({ text }: { text: string }) => (
-  <li>
-    <a href="#" className="text-on-surface-variant hover:text-primary transition-colors text-[13px] flex items-center gap-2 group">
-      <span className="w-1.5 h-1.5 bg-primary/20 scale-0 group-hover:scale-100 transition-transform" />
-      {text}
-    </a>
-  </li>
-)
 
 export default Footer

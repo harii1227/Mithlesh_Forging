@@ -1,219 +1,191 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Drill, ShieldCheck, Zap, Factory, Quote } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowUpRight, ShieldCheck, Gauge, Wrench, Ruler, Quote, CheckCircle2 } from 'lucide-react'
+import logoMark from '../assets/brand/logo-mark.png'
+import { Button, Container, CtaBand, Gear, Reveal, SectionHeading } from '../components/ui'
+import { company, products, stats, testimonials, whatsappLink } from '../data/site'
 
-const testimonials = [
-  { name: "Rajesh Kumar", company: "Steel Industries", text: "Mithlesh Forging's screw presses have increased our production efficiency by 40%." },
-  { name: "Amit Sharma", company: "Auto Parts India", text: "The reliability of their C-Type presses is unmatched in the Indian market." },
-  { name: "Sanjay Gupta", company: "ForgeTech Solutions", text: "Exceptional technical support and high-precision machinery. Highly recommended." },
-  { name: "Vikram Singh", company: "Heavy Gear Corp", text: "Their H-Type presses are built for extreme endurance. Zero downtime in over 2 years." },
-  { name: "Deepak Verma", company: "Precision Metals", text: "Modern engineering meets industrial strength. A trusted partner for our forging needs." },
+const strengths = [
+  { icon: ShieldCheck, title: 'Built for endurance', text: 'Every machine is tested beyond its nominal capacity before it leaves our plant.' },
+  { icon: Ruler, title: 'Precision engineered', text: 'Close-tolerance machining and slide guidance for accurate, repeatable strokes.' },
+  { icon: Gauge, title: 'Built to your tonnage', text: 'From 5 T eccentric presses to 1000 MT friction screw presses, sized to your job.' },
+  { icon: Wrench, title: 'Repair & maintenance', text: 'Specialised repair operations and a responsive technical team for running plants.' },
 ]
 
 const Home = () => {
   return (
-    <div className="overflow-hidden bg-primary text-white">
-      {/* Hero Section - Geometric Intense */}
-      <section className="relative min-h-screen flex items-center overflow-hidden chipka-hero bg-primary">
-        <div className="absolute inset-0 z-0 technical-grid opacity-30" />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary geometric-overlay opacity-80" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-tertiary geometric-overlay opacity-40 rotate-180" />
-
-        <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover brightness-[0.4] contrast-125 grayscale"
-            src="/hero.png"
-            alt="Industrial Machinery"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent"></div>
+    <div className="overflow-hidden">
+      {/* Hero */}
+      <section className="relative bg-navy-radial pt-nav text-white">
+        <div className="absolute inset-0 blueprint-grid" />
+        <div className="absolute inset-y-0 right-0 hidden w-[55%] lg:block">
+          <img src="/hero.png" alt="Friction screw press forging hot metal" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/60 to-navy-950/10" />
+          <div className="absolute inset-0 bg-brand-700/20 mix-blend-color" />
         </div>
+        <Gear className="absolute right-[8%] top-[18%] hidden h-[520px] w-[520px] text-white/[0.07] lg:block animate-[spin_90s_linear_infinite]" teeth={16} />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-secondary text-white font-headline text-[12px] font-black uppercase tracking-[0.4em] mb-12 shadow-[0_0_30px_rgba(220,38,38,0.5)]">
-              <div className="w-2 h-2 bg-white animate-ping" />
-              INDUSTRIALLY FORGED
-            </div>
+        <Container className="relative grid min-h-[min(calc(100svh-var(--navbar-height)),720px)] items-center gap-12 py-12 lg:grid-cols-[1.15fr_1fr] lg:py-16">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+            <span className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-steel-200 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-brand-400 shadow-[0_0_10px_#4a8af0]" />
+              Friction Screw Press Manufacturers · Ghaziabad & Faridabad
+            </span>
 
-            <h1 className="text-6xl md:text-[120px] font-black leading-[0.85] mb-12 uppercase tracking-tighter">
-              Engineered <br /><span className="text-tertiary">Integrity.</span>
+            <h1 className="mt-8 text-[34px] leading-[1] font-black uppercase sm:text-5xl lg:text-[60px]">
+              <span className="text-steel block">Built on</span>
+              <span className="text-steel block">Strength.</span>
+              <span className="mt-2 block text-brand-400">Driven by</span>
+              <span className="block text-brand-400">Quality.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/80 max-w-xl mb-16 leading-relaxed font-bold uppercase tracking-tight">
-              Manufacturing India's most advanced <span className="text-secondary underline decoration-tertiary decoration-8 underline-offset-8">Friction Screw Presses</span> for the global market.
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-steel-300 md:text-lg">
+              {company.name} designs and manufactures friction screw presses, forging presses, power presses and
+              shearing machines — engineered for forging shops across India and international markets.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6">
-              <motion.button
-                whileHover={{ scale: 1.05, x: 10 }}
-                className="bg-secondary text-white font-headline font-black uppercase tracking-[0.3em] px-16 py-7 text-[12px] shadow-[0_0_40px_rgba(220,38,38,0.6)] hover:bg-tertiary transition-all"
-              >
-                Request Quote
-              </motion.button>
-              <button className="bg-transparent border-4 border-white/20 text-white font-headline font-black uppercase tracking-[0.3em] px-16 py-7 text-[12px] hover:bg-white hover:text-primary transition-all">
-                The Catalog
-              </button>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Button href={whatsappLink()}>Request a Quote</Button>
+              <Button to="/products" variant="ghost-light">Explore Machinery</Button>
             </div>
           </motion.div>
 
-          <div className="flex lg:justify-end relative mt-20 lg:mt-0">
-            <div className="absolute -inset-20 bg-secondary/20 blur-[150px] rounded-full" />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="relative p-2 bg-gradient-to-br from-secondary via-tertiary to-secondary shadow-[0_0_80px_rgba(220,38,38,0.4)] w-full max-w-md mx-auto lg:mx-0"
-            >
-              <div className="bg-primary p-8 md:p-12 space-y-8 md:space-y-12 relative border border-white/10">
-                <div className="space-y-4">
-                  <div className="text-5xl md:text-6xl font-headline font-black text-secondary tracking-tighter text-center lg:text-left">1985</div>
-                  <div className="text-[10px] md:text-[12px] text-tertiary font-black uppercase tracking-[0.5em] text-center lg:text-left">ESTABLISHED LEGACY</div>
-                </div>
-                <div className="h-[2px] bg-gradient-to-r from-secondary to-transparent" />
-                <div className="grid grid-cols-1 gap-6 md:gap-8">
-                  {[
-                    "500+ Delivered Units",
-                    "Exported Internationally",
-                    "Infinite Tonnage Support"
-                  ].map(stat => (
-                    <div key={stat} className="flex items-center gap-6">
-                      <div className="w-3 h-3 bg-secondary shadow-[0_0_15px_#dc2626] shrink-0" />
-                      <span className="text-[11px] md:text-[12px] text-white font-black uppercase tracking-widest">{stat}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Capabilities - High Contrast Navy/Red Split */}
-      <section className="py-40 bg-primary relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-[-12deg] transform translate-x-1/2" />
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-32 gap-12">
-            <div className="max-w-3xl">
-              <span className="text-tertiary font-headline font-black text-[14px] uppercase tracking-[0.8em] mb-6 block border-l-8 border-secondary pl-6">ENGINEERING DIVISIONS</span>
-              <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85]">The Modern <br /><span className="text-secondary italic">Heavyweight</span> Standard.</h2>
-            </div>
-            <div className="font-headline text-[12px] uppercase font-black tracking-[0.4em] text-tertiary group flex items-center gap-6 cursor-pointer">
-              TECH STACK <ArrowRight className="group-hover:translate-x-4 transition-transform text-secondary" size={24} />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {[
-              { name: 'Friction Press', desc: 'Powerful impact for high-speed forging output.', icon: <Zap size={32} />, color: 'secondary' },
-              { name: 'Forging Press', desc: 'Precision engineered for cold forging metallurgy.', icon: <Drill size={32} />, color: 'tertiary' },
-              { name: 'Power Press C', desc: 'Rigid C-frame design for specialized punching.', icon: <ShieldCheck size={32} />, color: 'secondary' },
-              { name: 'Power Press H', desc: 'Ultimate stability for high-tonnage stamping.', icon: <Factory size={32} />, color: 'tertiary' },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="group p-16 bg-primary-container border-b-[12px] border-secondary shadow-2xl hover:translate-y-[-20px] transition-all duration-700 relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 technical-grid opacity-20" />
-                <div className={`text-${item.color} group-hover:scale-125 duration-700 mb-12 transition-transform`}>
-                  {item.icon}
-                </div>
-                <h3 className="text-3xl font-black uppercase mb-6 tracking-tighter">{item.name}</h3>
-                <p className="text-white/60 text-sm leading-relaxed mb-12 font-bold uppercase tracking-tight">{item.desc}</p>
-                <button className={`text-[11px] font-black uppercase tracking-[0.3em] text-${item.color} flex items-center gap-3 group-hover:underline`}>Technical Specs <ArrowRight size={14} /></button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials - Intense Red Geometric */}
-      <section className="py-40 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 z-0 technical-grid opacity-20" />
-        <div className="absolute top-0 left-0 w-full h-[12px] bg-primary" />
-        <div className="max-w-7xl mx-auto px-6 mb-32 text-center relative z-10">
-          <span className="text-white font-headline font-black text-[12px] uppercase tracking-[1em] mb-8 block">VOICE OF PARTNERS</span>
-          <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none text-primary">
-            Global <br />Trust.
-          </h2>
-        </div>
-
-        <div className="relative flex gap-10 mask-testimonials">
           <motion.div
-            animate={{ x: [0, -1920] }}
-            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-            className="flex gap-10 whitespace-nowrap min-w-full hover:[animation-play-state:paused]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative mx-auto w-full max-w-md lg:mr-0"
           >
-            {[...testimonials, ...testimonials].map((t, idx) => (
-              <div
-                key={idx}
-                className="inline-block p-16 bg-primary w-[500px] shadow-[0_30px_60px_rgba(0,0,0,0.5)] border-l-[16px] border-tertiary shrink-0"
-              >
-                <Quote size={60} className="text-secondary/20 mb-10" />
-                <p className="text-white font-body text-xl leading-relaxed italic mb-12 whitespace-normal font-medium tracking-tight">"{t.text}"</p>
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-secondary text-white rounded-none flex items-center justify-center font-headline font-black text-2xl shadow-xl">
-                    {t.name[0]}
+            <div className="rounded-2xl bg-white/95 p-7 text-navy-900 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur md:p-9">
+              <img src={logoMark} alt="" className="h-16 w-auto" />
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-brand-600">At a glance</p>
+              <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-7">
+                {stats.map((s) => (
+                  <div key={s.label}>
+                    <div className="font-headline text-2xl font-black text-brand-gradient md:text-3xl" style={{ fontStretch: '112%' }}>{s.value}</div>
+                    <div className="mt-1 text-xs leading-snug text-steel-500">{s.label}</div>
                   </div>
-                  <div>
-                    <div className="text-lg font-black text-white uppercase tracking-[0.2em]">{t.name}</div>
-                    <div className="text-[11px] text-tertiary font-black uppercase tracking-[0.4em] mt-1">{t.company}</div>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+              <div className="mt-8 space-y-3 border-t border-steel-200 pt-6 text-sm">
+                {['Exported internationally', 'Custom tonnage on request', 'MSME registered'].map((t) => (
+                  <div key={t} className="flex items-center gap-3 text-steel-700">
+                    <CheckCircle2 size={16} className="text-brand-600" /> {t}
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
-        </div>
+        </Container>
+        <div className="relative h-1 bg-gradient-to-r from-brand-600 via-steel-300 to-brand-600" />
       </section>
 
-      {/* Narrative Section - Extreme High Contrast */}
-      <section className="py-40 bg-primary relative">
-        <div className="absolute left-0 top-0 w-full h-full geometric-split opacity-50" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 items-center relative z-10">
-          <div className="relative order-2 lg:order-1">
-            <div className="absolute -inset-10 bg-secondary/30 blur-[150px] rounded-full rotate-45" />
-            <img
-              src="/inspection.png"
-              className="relative z-10 w-full h-[800px] object-cover shadow-[0_60px_100px_rgba(0,0,0,0.8)] border-8 border-white/5 grayscale group-hover:grayscale-0 transition-all duration-[2s]"
-              alt="Quality Inspection"
+      {/* Machinery range */}
+      <section className="py-14 md:py-20">
+        <Container>
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow="Our machinery"
+              title={<>Presses that <span className="text-brand-gradient">carry the load.</span></>}
+              text="A complete range of forging and sheet-metal machinery, manufactured in-house at our NCR plants."
             />
-            <div className="absolute top-20 right-[-40px] z-20 p-20 bg-secondary shadow-[0_0_100px_rgba(220,38,38,0.8)] border-b-[24px] border-tertiary">
-              <div className="text-6xl font-black text-white mb-2 tracking-tighter">QC-EX</div>
-              <div className="text-[14px] text-primary font-black uppercase tracking-[0.8em]">QUALITY ZERO-DEFECT</div>
+            <Button to="/products" variant="ghost-dark" className="shrink-0">View full catalogue</Button>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {products.map((p, i) => (
+              <Reveal key={p.id} delay={i * 0.06} className={i === 0 ? 'lg:row-span-2' : ''}>
+                <Link
+                  to={`/products?machine=${p.id}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-steel-200 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_30px_60px_-30px_rgba(7,28,66,0.45)]"
+                >
+                  <div className={`relative overflow-hidden bg-steel-100 ${i === 0 ? 'aspect-[4/5] lg:aspect-auto lg:flex-1' : 'aspect-[4/3]'}`}>
+                    <img src={p.image} alt={p.name} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-navy-900">
+                      {p.type}
+                    </span>
+                  </div>
+                  <div className="flex items-start justify-between gap-4 p-6">
+                    <div>
+                      <h3 className="text-lg font-bold uppercase leading-tight text-navy-900">{p.name}</h3>
+                      <p className="mt-2 text-sm text-steel-500">Capacity <span className="font-semibold text-brand-600">{p.capacity}</span></p>
+                    </div>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-steel-200 text-navy-900 transition-colors group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white">
+                      <ArrowUpRight size={18} />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Why us */}
+      <section className="relative bg-white py-14 md:py-20">
+        <div className="absolute inset-0 blueprint-grid-light" />
+        <Container className="relative grid items-center gap-14 lg:grid-cols-2">
+          <Reveal className="relative">
+            <div className="absolute -left-6 -top-6 h-40 w-40 rounded-2xl bg-steel-brushed" />
+            <img src="/images/mithlesh-forging-press-workshop.jpg" alt="Mithlesh Forging press in our forging workshop" className="relative aspect-square w-full rounded-2xl object-cover shadow-[0_40px_80px_-40px_rgba(7,28,66,0.6)]" />
+            <div className="absolute -bottom-6 right-6 rounded-xl bg-navy-900 px-6 py-5 text-white shadow-xl md:right-[-24px]">
+              <div className="font-headline text-3xl font-black text-steel" style={{ fontStretch: '112%' }}>Zero-defect</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.25em] text-brand-300">Quality policy</div>
+            </div>
+          </Reveal>
+
+          <div>
+            <SectionHeading
+              eyebrow="Why Mithlesh Forging"
+              title={<>Building the <span className="text-brand-gradient">standards</span> of heavy industry.</>}
+              text="We engineer the backbone of production lines — machines that combine extreme force with precision, and a team that stands behind them long after installation."
+            />
+            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+              {strengths.map((s, i) => (
+                <Reveal key={s.title} delay={i * 0.08}>
+                  <div className="h-full rounded-xl border border-steel-200 bg-steel-50 p-6 transition-colors hover:border-brand-300 hover:bg-white">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                      <s.icon size={22} />
+                    </div>
+                    <h3 className="mt-5 text-base font-bold uppercase text-navy-900">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-steel-600">{s.text}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="order-1 lg:order-2 space-y-20"
-          >
-            <h2 className="text-7xl md:text-[100px] font-black text-white uppercase leading-[0.8] tracking-tighter">
-              Building <br /><span className="text-secondary underline decoration-tertiary decoration-[12px] underline-offset-[20px]">Standards.</span>
-            </h2>
-            <p className="text-white/60 text-2xl leading-relaxed font-black uppercase tracking-tight">
-              Mithlesh Forging remains the uncompromising core of heavy industry. We engineer the backbone of global production lines.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="p-16 bg-primary-container border-l-[20px] border-secondary shadow-3xl">
-                <div className="text-7xl font-headline font-black text-white leading-none mb-4">500+</div>
-                <div className="text-[12px] font-black text-tertiary uppercase tracking-[0.6em]">DELIVERIES</div>
-              </div>
-              <div className="p-16 bg-primary-container border-l-[20px] border-tertiary shadow-3xl">
-                <div className="text-7xl font-headline font-black text-white leading-none mb-4">25+</div>
-                <div className="text-[12px] font-black text-secondary uppercase tracking-[0.6em]">MARKETS</div>
-              </div>
-            </div>
-          </motion.div>
+        </Container>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-14 md:py-20">
+        <Container>
+          <SectionHeading
+            align="center"
+            eyebrow="Voice of our partners"
+            title={<>Trusted on <span className="text-brand-gradient">shop floors</span> across India.</>}
+          />
+        </Container>
+        <div className="mask-fade-x mt-14 overflow-hidden">
+          <div className="flex w-max animate-marquee gap-6 hover:[animation-play-state:paused]">
+            {[...testimonials, ...testimonials].map((t, idx) => (
+              <figure key={idx} className="w-[320px] shrink-0 rounded-xl border border-steel-200 bg-white p-7 md:w-[420px]">
+                <Quote size={28} className="text-brand-300" />
+                <blockquote className="mt-4 text-[15px] leading-relaxed text-steel-700">“{t.text}”</blockquote>
+                <figcaption className="mt-6 flex items-center gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 font-headline font-bold text-white">{t.name[0]}</span>
+                  <span>
+                    <span className="block font-semibold text-navy-900">{t.name}</span>
+                    <span className="text-sm text-steel-500">{t.company}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
+      <CtaBand />
     </div>
   )
 }
